@@ -7,11 +7,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import de.scoreboard.main.Scoreboards;
-import de.scoreboard.utils.OnlinePlayer;
 
 public class ScoreboardJoin implements Listener {
-	
-	public static String prefix;
 	
 	private final long TABLIST_DELAY = 1*20;
 	
@@ -19,62 +16,64 @@ public class ScoreboardJoin implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		
-		prefix(event.getPlayer());
-		OnlinePlayer.playersOnline();
+		setprefix(event.getPlayer());
+		Bukkit.getOnlinePlayers().size();
 		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Scoreboards.getPlugin(), new Runnable() {
 			
 			@Override
 			public void run() {
 				for (Player player : Bukkit.getOnlinePlayers()) {
-					prefix(player);
-					OnlinePlayer.playersOnline();
+					setprefix(player);
+					setRang(player);
+					Bukkit.getOnlinePlayers().size();
+					
 				}
 				
 			}
 
-		}, 0, TABLIST_DELAY);
+		}, 20, TABLIST_DELAY);
 		
 	}
 	
-	public void prefix(Player p) {
+	public void setprefix(Player p) {
 		
 		String team = "";
 		
 		if(p.hasPermission("tab.admin")) {
-			team = "000Admin||||";
+			team = "00000Admin::";
 		} else if(p.hasPermission("tab.dev")) {
-			team = "002Dev||||";
+			team = "00002Dev::";
 		} else if(p.hasPermission("tab.mbuilder")) {
-			team = "003MBuilder||||";
+			team = "00003MBuilder::";
 		} else if(p.hasPermission("tab.builder")) {
-			team = "004Builder||||";
+			team = "00004Builder::";
 		} else if(p.hasPermission("tab.azubi")) {
-			team = "005Azubi||||";
+			team = "00005Azubi::";
 		} else if(p.hasPermission("tab.mod")) {
-			team = "006Mod||||";
+			team = "00006Mod::";
 		} else if(p.hasPermission("tab.sup")) {
-			team = "007Sup||||";
+			team = "00007Sup::";
 		} else if(p.hasPermission("tab.freund")) {
-			team = "008Freund||||";
+			team = "00008Freund::";
 		} else if(p.hasPermission("tab.yt+")) {
-			team = "009YT||||";
+			team = "00009YT::";
 		} else if(p.hasPermission("tab.champ")) {
-			team = "0010Champ||||";
+			team = "000010Champ::";
 		}  else if(p.hasPermission("tab.drache")) {
-			team = "0011Drache||||";
+			team = "000011Drache::";
 		} else if(p.hasPermission("tab.titan")) {
-			team = "0012Titan||||";
+			team = "000012Titan::";
 		} else if(p.hasPermission("tab.yt")) {
-			team = "0013You||||";
+			team = "000013You::";
 		} else if(p.hasPermission("tab.legende")) {
-			team = "0014Legende||||";
+			team = "000014Legende::";
 		} else if(p.hasPermission("tab.ultra")) {
-			team = "0015Ultra||||";
+			team = "000015Ultra::";
 		} else if(p.hasPermission("tab.premium")) {
-			team = "0016Premium||||";
+			team = "000016Premium::";
 		} else {
-			team = "0017Spieler||||";
+			team = "000017Spieler::";
 		}
 		
 		Scoreboards.board.getTeam(team).addPlayer(p);
@@ -85,6 +84,13 @@ public class ScoreboardJoin implements Listener {
 		
 		}
 		
+	}
+	
+	public static String setRang(Player p) {
+		
+		p.getDisplayName();
+		
+		return p.getDisplayName();
 	}
 
 }

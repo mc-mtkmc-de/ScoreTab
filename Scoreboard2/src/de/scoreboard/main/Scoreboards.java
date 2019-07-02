@@ -1,7 +1,6 @@
 package de.scoreboard.main;
 
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -9,7 +8,6 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.Team;
 
 import de.scoreboard.listener.ScoreboardJoin;
-import de.scoreboard.utils.OnlinePlayer;
 
 public class Scoreboards extends JavaPlugin {
 	
@@ -32,26 +30,26 @@ public class Scoreboards extends JavaPlugin {
 	private void scoreboard() {
 		
 		board = Bukkit.getScoreboardManager().getMainScoreboard();
-		obj = board.registerNewObjective("totde", "dummenJ");
+		obj = board.registerNewObjective("todder", "dummeJava");
 		
 		
-		Team Admin = board.registerNewTeam("000Admin||||");
-		Team Dev = board.registerNewTeam("002Dev||||");
-		Team MBuilder = board.registerNewTeam("003MBuilder||||");
-	 	Team Builder = board.registerNewTeam("004Builder||||");
-		Team Azubi = board.registerNewTeam("005Azubi||||");
-		Team Mod = board.registerNewTeam("006Mod||||");
-		Team Sup = board.registerNewTeam("007Sup||||");
-		Team Freund = board.registerNewTeam("008Freund||||");
-		Team YT = board.registerNewTeam("009YT||||");
-		Team Champ = board.registerNewTeam("0010Champ||||");
-		Team Drache = board.registerNewTeam("0011Drache||||");
-		Team Titan = board.registerNewTeam("0012Titan||||");
-		Team You = board.registerNewTeam("0013You||||");
-		Team Legende = board.registerNewTeam("0014Legende||||");
-		Team Ultra = board.registerNewTeam("0015Ultra||||");
-		Team Premium = board.registerNewTeam("0016Premium||||");
-		Team Spieler = board.registerNewTeam("0017Spieler||||");
+		Team Admin = board.registerNewTeam("00000Admin::");
+		Team Dev = board.registerNewTeam("00002Dev::");
+		Team MBuilder = board.registerNewTeam("00003MBuilder::");
+	 	Team Builder = board.registerNewTeam("00004Builder::");
+		Team Azubi = board.registerNewTeam("00005Azubi::");
+		Team Mod = board.registerNewTeam("00006Mod::");
+		Team Sup = board.registerNewTeam("00007Sup::");
+		Team Freund = board.registerNewTeam("00008Freund::");
+		Team YT = board.registerNewTeam("00009YT::");
+		Team Champ = board.registerNewTeam("000010Champ::");
+		Team Drache = board.registerNewTeam("000011Drache::");
+		Team Titan = board.registerNewTeam("000012Titan::");
+		Team You = board.registerNewTeam("000013You::");
+		Team Legende = board.registerNewTeam("000014Legende::");
+		Team Ultra = board.registerNewTeam("000015Ultra::");
+		Team Premium = board.registerNewTeam("000016Premium::");
+		Team Spieler = board.registerNewTeam("000017Spieler::");
 		
 		Admin.setPrefix("§a[Admin]");
 		Dev.setPrefix("§b[Dev]");
@@ -74,10 +72,10 @@ public class Scoreboards extends JavaPlugin {
 		obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 		obj.setDisplayName("§6§lEnderGamesMC.de");
 		obj.getScore("§6§lRang").setScore(5);
-		obj.getScore("§c§l" + ScoreboardJoin.prefix).setScore(4);
+		obj.getScore("§c§l").setScore(4);
 		obj.getScore("§1§l ").setScore(3);
 		obj.getScore("§6§lOnline:").setScore(2);
-		obj.getScore("§d§l" + OnlinePlayer.playersOnline + "§b§l/§c§l" + Bukkit.getMaxPlayers()).setScore(1);
+		obj.getScore("§d§l" + Bukkit.getOnlinePlayers().size() + "§b§l/§c§l" + Bukkit.getMaxPlayers()).setScore(1);
 		
 	}
 
