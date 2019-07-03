@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 import de.scoreboard.main.Scoreboards;
+import de.scoreboard.utils.ScoreTab;
 
 public class ScoreboardJoin implements Listener {
 	
@@ -16,8 +17,8 @@ public class ScoreboardJoin implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		
+		ScoreTab.scoreboard(event.getPlayer());
 		setprefix(event.getPlayer());
-		Bukkit.getOnlinePlayers().size();
 		
 		Bukkit.getScheduler().scheduleSyncRepeatingTask(Scoreboards.getPlugin(), new Runnable() {
 			
@@ -25,8 +26,7 @@ public class ScoreboardJoin implements Listener {
 			public void run() {
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					setprefix(player);
-					setRang(player);
-					Bukkit.getOnlinePlayers().size();
+					updateScoreboard(player);
 					
 				}
 				
@@ -36,61 +36,63 @@ public class ScoreboardJoin implements Listener {
 		
 	}
 	
+	
+	
 	public void setprefix(Player p) {
 		
 		String team = "";
 		
 		if(p.hasPermission("tab.admin")) {
-			team = "00000Admin::";
+			team = "000Admin:::";
 		} else if(p.hasPermission("tab.dev")) {
-			team = "00002Dev::";
+			team = "002Dev:::";
 		} else if(p.hasPermission("tab.mbuilder")) {
-			team = "00003MBuilder::";
+			team = "003MBuilder:::";
 		} else if(p.hasPermission("tab.builder")) {
-			team = "00004Builder::";
+			team = "004Builder:::";
 		} else if(p.hasPermission("tab.azubi")) {
-			team = "00005Azubi::";
+			team = "005Azubi:::";
 		} else if(p.hasPermission("tab.mod")) {
-			team = "00006Mod::";
+			team = "006Mod:::";
 		} else if(p.hasPermission("tab.sup")) {
-			team = "00007Sup::";
+			team = "007Sup:::";
 		} else if(p.hasPermission("tab.freund")) {
-			team = "00008Freund::";
+			team = "008Freund:::";
 		} else if(p.hasPermission("tab.yt+")) {
-			team = "00009YT::";
+			team = "009YT:::";
 		} else if(p.hasPermission("tab.champ")) {
-			team = "000010Champ::";
+			team = "010Champ:::";
 		}  else if(p.hasPermission("tab.drache")) {
-			team = "000011Drache::";
+			team = "011Drache:::";
 		} else if(p.hasPermission("tab.titan")) {
-			team = "000012Titan::";
+			team = "012Titan:::";
 		} else if(p.hasPermission("tab.yt")) {
-			team = "000013You::";
+			team = "013You:::";
 		} else if(p.hasPermission("tab.legende")) {
-			team = "000014Legende::";
+			team = "014Legende:::";
 		} else if(p.hasPermission("tab.ultra")) {
-			team = "000015Ultra::";
+			team = "015Ultra:::";
 		} else if(p.hasPermission("tab.premium")) {
-			team = "000016Premium::";
+			team = "016Premium:::";
 		} else {
-			team = "000017Spieler::";
+			team = "017Spieler:::";
 		}
 		
-		Scoreboards.board.getTeam(team).addPlayer(p);
-		p.setDisplayName(Scoreboards.board.getTeam(team).getPrefix() + p.getName());
+		ScoreTab.board.getTeam(team).addPlayer(p);
+		p.setDisplayName(ScoreTab.board.getTeam(team).getPrefix() + p.getName());
 		
 		for(Player all : Bukkit.getOnlinePlayers()) {
-			all.setScoreboard(Scoreboards.board);
+			all.setScoreboard(ScoreTab.board);
 		
 		}
 		
 	}
 	
-	public static String setRang(Player p) {
+	public static void updateScoreboard(Player p) {
 		
-		p.getDisplayName();
+		ScoreTab.obj.getScore("§1§l" + p.getDisplayName()).setScore(3);
+		ScoreTab.obj.getScore("§d§l" + Bukkit.getOnlinePlayers().size() + "§b§l/§c§l" + Bukkit.getMaxPlayers()).setScore(1);
 		
-		return p.getDisplayName();
 	}
 
 }
